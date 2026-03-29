@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_sale_pdf_to_quote_wizard,sale.pdf.to.quote.wizard,model_sale_pdf_to_quote_wizard,base.group_user,1,1,1,1
+access_purchase_pdf_to_order_wizard,purchase.pdf.to.order.wizard,model_purchase_pdf_to_order_wizard,base.group_user,1,1,1,1

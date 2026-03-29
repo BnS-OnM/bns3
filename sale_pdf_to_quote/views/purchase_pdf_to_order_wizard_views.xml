@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_purchase_pdf_to_order_wizard_form" model="ir.ui.view">
+        <field name="name">purchase.pdf.to.order.wizard.form</field>
+        <field name="model">purchase.pdf.to.order.wizard</field>
+        <field name="arch" type="xml">
+            <form string="PDF to Purchase Order">
+                <sheet>
+                    <group invisible="state == 'done'">
+                        <group string="Input">
+                            <field name="pdf_file" filename="filename"/>
+                            <field name="filename"/>
+                            <field name="partner_id" options="{'no_create': False}"/>
+                            <field name="use_pdf_prices"/>
+                            <field name="name_prefix"/>
+                        </group>
+                    </group>
+
+                    <group invisible="state != 'done'">
+                        <group string="Result">
+                            <field name="purchase_order_id" readonly="1"/>
+                            <field name="matched_count" readonly="1"/>
+                            <field name="unmatched_count" readonly="1"/>
+                        </group>
+                        <group string="Unmatched details">
+                            <field name="unmatched_text" nolabel="1" readonly="1"/>
+                        </group>
+                    </group>
+                </sheet>
+
+                <footer>
+                    <button name="action_create_purchase_order"
+                            string="Create Purchase Order"
+                            type="object"
+                            class="btn-primary"
+                            invisible="state == 'done'"/>
+                    <button string="Close"
+                            class="btn-secondary"
+                            special="cancel"
+                            invisible="state == 'done'"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_purchase_pdf_to_order_wizard" model="ir.actions.act_window">
+        <field name="name">PDF to Purchase Order</field>
+        <field name="res_model">purchase.pdf.to.order.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="view_purchase_pdf_to_order_wizard_form"/>
+        <field name="target">new</field>
+    </record>
+</odoo>

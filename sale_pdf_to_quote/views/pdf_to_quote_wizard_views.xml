@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_sale_pdf_to_quote_wizard_form" model="ir.ui.view">
+        <field name="name">sale.pdf.to.quote.wizard.form</field>
+        <field name="model">sale.pdf.to.quote.wizard</field>
+        <field name="arch" type="xml">
+            <form string="PDF to Quotation">
+                <sheet>
+
+                    <!-- INPUT -->
+                    <group invisible="state == 'done'">
+                        <group string="Input">
+                            <field name="pdf_file" filename="filename"/>
+                            <field name="filename"/>
+                            <field name="partner_id" options="{'no_create': False}"/>
+                            <field name="use_pdf_prices"/>
+                            <field name="name_prefix"/>
+                        </group>
+
+                        <group string="Optional filters">
+                            <field name="restrict_to_brand"/>
+                            <field name="brand_filter" invisible="restrict_to_brand == False"/>
+                        </group>
+                    </group>
+
+                    <!-- RESULT -->
+                    <group invisible="state != 'done'">
+                        <group string="Result">
+                            <field name="sale_order_id" readonly="1"/>
+                            <field name="matched_count" readonly="1"/>
+                            <field name="unmatched_count" readonly="1"/>
+                        </group>
+                        <group string="Unmatched details">
+                            <field name="unmatched_text" nolabel="1" readonly="1"/>
+                        </group>
+                    </group>
+
+                </sheet>
+
+                <footer>
+                    <button name="action_create_quotation"
+                            string="Create Quotation"
+                            type="object"
+                            class="btn-primary"
+                            invisible="state == 'done'"/>
+                    <button string="Close"
+                            class="btn-secondary"
+                            special="cancel"
+                            invisible="state == 'done'"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+   <record id="action_sale_pdf_to_quote_wizard" model="ir.actions.act_window">
+    <field name="name">PDF to Quotation</field>
+    <field name="res_model">sale.pdf.to.quote.wizard</field>
+    <field name="view_mode">form</field>
+    <field name="view_id" ref="view_sale_pdf_to_quote_wizard_form"/>
+    <field name="target">new</field>
+   </record>
+
+</odoo>

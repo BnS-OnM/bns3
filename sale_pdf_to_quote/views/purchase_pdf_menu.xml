@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <menuitem id="menu_purchase_pdf_to_order"
+              name="Importeer PDF naar inkooporder"
+              parent="purchase.menu_purchase_root"
+              action="action_purchase_pdf_to_order_wizard"
+              sequence="100"
+              groups="purchase.group_purchase_user,purchase.group_purchase_manager"/>
+</odoo>
